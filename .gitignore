@@ -1,0 +1,15 @@
+# Never commit real credentials — only secrets.env.example belongs here.
+secrets.env
+*.env
+!*.env.example
+
+# Runtime artifacts
+*.log
+*.lock
+lake_temp.txt
+consecutive-misses
+
+# Editor / OS noise
+*~
+*.swp
+.DS_Store
