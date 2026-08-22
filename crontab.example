@@ -1,0 +1,20 @@
+# Suggested user crontab for wu-upload.
+#
+#   crontab -e
+#
+# cron runs with a minimal environment, so set PATH explicitly — rtl_433, jq
+# and curl all need to be findable.
+PATH=/usr/local/bin:/usr/bin:/bin
+
+# Silence mail for routine runs; wu-upload.sh logs to /var/log/pws/wu-upload.log.
+MAILTO=""
+
+# Every five minutes, offset by two.
+#
+# The offset is deliberate: most stations upload on the :00/:05 mark, so firing
+# between them avoids the crowd. It also keeps the 60-second SDR read clear of
+# other jobs that like round numbers.
+2,7,12,17,22,27,32,37,42,47,52,57 * * * * /usr/local/bin/wu-upload.sh
+
+# Override settings per-station without editing the script:
+# 2,7,12,17,22,27,32,37,42,47,52,57 * * * * STATION_ID=KXXYYYY7 ACURITE_ID=1234 /usr/local/bin/wu-upload.sh
