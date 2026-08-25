@@ -18,7 +18,7 @@ set -euo pipefail
 
 STATION_ID="${STATION_ID:-KCACLEAR4}"
 SECRETS="${SECRETS:-/etc/pws/secrets.env}"
-READER="${READER:-/home/mike/operations/read_acurite.sh}"
+READER="${READER:-/usr/local/bin/read_acurite.sh}"
 READ_WINDOW="${READ_WINDOW:-60}"
 LOGFILE="${LOGFILE:-/var/log/pws/wu-upload.log}"
 LOCKFILE="${LOCKFILE:-/run/lock/wu-upload.lock}"
@@ -69,6 +69,10 @@ KEY_VAR="WU_UPLOAD_KEY_${STATION_ID}"
 UPLOAD_KEY="${!KEY_VAR:?$KEY_VAR not set in $SECRETS}"
 
 # ---------------------------------------------------------------- read
+# A missing reader is a configuration error, not a lossy-RF condition. Say so
+# rather than letting it accumulate as misses and blame the sensor battery.
+[[ -x "$READER" ]] || die "reader not executable: $READER (set \$READER)"
+
 # A single miss is normal — RF is lossy. Sustained silence is not.
 if ! reading=$("$READER" --json "$READ_WINDOW" 2>>"$LOGFILE"); then
     n=$(( $(cat "$MISSFILE" 2>/dev/null || echo 0) + 1 ))

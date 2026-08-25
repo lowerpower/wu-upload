@@ -39,7 +39,8 @@ way: two processes on one dongle will both fail.
 
 ## Setup
 
-1. Install the scripts:
+1. Install the scripts. Install the reader first — the uploader looks for it at
+   `/usr/local/bin/read_acurite.sh`:
 
    ```bash
    sudo install -m 755 read_acurite.sh /usr/local/bin/read_acurite.sh
@@ -57,16 +58,16 @@ way: two processes on one dongle will both fail.
 
    `wu-upload.sh` refuses to run unless this file is mode `600` or `400`.
 
-3. Point `wu-upload.sh` at your reader and station. Every setting has an
-   environment override, so no edit to the script is needed:
+3. Set your station ID. Every setting has an environment override, so no edit
+   to the script is needed:
 
    ```bash
-   STATION_ID=KXXYYYY7 READER=/usr/local/bin/read_acurite.sh /usr/local/bin/wu-upload.sh
+   STATION_ID=KXXYYYY7 /usr/local/bin/wu-upload.sh
    ```
 
-   Defaults are the author's own (`STATION_ID=KCACLEAR4`, reader under
-   `/home/mike/operations/`); override them or edit the defaults at the top of
-   the script.
+   `STATION_ID` defaults to the author's own (`KCACLEAR4`) — override it as
+   above, or edit the defaults at the top of the script. If your reader lives
+   somewhere other than `/usr/local/bin/read_acurite.sh`, set `READER` too.
 
 4. Install a schedule — see `crontab.example`.
 
