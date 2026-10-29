@@ -23,7 +23,7 @@ way: two processes on one dongle will both fail.
 ## Requirements
 
 - An RTL-SDR dongle
-- [`rtl_433`](https://github.com/merbanan/rtl_433) (tested against 23.11)
+- [`rtl_433`](https://github.com/merbanan/rtl_433) (tested against 23.11 and 25.12)
 - `jq`, `stdbuf` (coreutils), `curl`, `flock` (util-linux), `awk`
 - A Weather Underground PWS station ID and upload key
 
