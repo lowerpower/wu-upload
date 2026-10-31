@@ -20,6 +20,13 @@ Acurite sensor
 `read_acurite.sh` is the only script here that starts `rtl_433`. Keep it that
 way: two processes on one dongle will both fail.
 
+<p align="center">
+  <img src="images/sensor.jpg" alt="Acurite tower temperature/humidity sensor mounted under the eaves" height="320">
+  <img src="images/dongle.jpg" alt="RTL-SDR Blog V3 dongle cabled to a telescoping dipole antenna" height="320">
+</p>
+
+![Station KCACLEAR4 on Weather Underground](images/wunderground-kcaclear4.png)
+
 ## Requirements
 
 - An RTL-SDR dongle
